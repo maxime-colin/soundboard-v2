@@ -4,17 +4,40 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { BoardListComponent } from './board-list/board-list.component';
+import { AngularFireModule } from 'angularfire2';
+
+// Don't remove !
+import * as firebase from 'firebase';
+import { BoardService } from './board.service';
+
+
+// Must export the config
+export const firebaseConfig = {
+  apiKey: "AIzaSyAwd-zTltQqyljJDcgcIefkC2DGrICDKJA",
+  authDomain: "mc-pad-test.firebaseapp.com",
+  databaseURL: "https://mc-pad-test.firebaseio.com",
+  storageBucket: "mc-pad-test.appspot.com",
+  messagingSenderId: "969572079029"
+};
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidemenuComponent,
+    BoardListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [],
+  providers: [
+      BoardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
