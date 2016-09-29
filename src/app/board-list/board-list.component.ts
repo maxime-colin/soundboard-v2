@@ -18,4 +18,5 @@ export class BoardListComponent implements OnInit {
     console.log(this.boards);
   }
 
+
 }
