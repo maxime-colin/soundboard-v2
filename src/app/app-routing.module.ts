@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BoardDetailComponent } from './board-detail/board-detail.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  //{ path: '/', component: HeroDetailComponent },
+  { path: 'board', component: BoardDetailComponent },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({

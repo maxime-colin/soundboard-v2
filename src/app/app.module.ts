@@ -11,6 +11,10 @@ import { AngularFireModule } from 'angularfire2';
 // Don't remove !
 import * as firebase from 'firebase';
 import { BoardService } from './board.service';
+import { RouterModule } from '@angular/router';
+import { SoundboardRoutingModule } from './app-routing.module';
+import { BoardDetailComponent } from './board-detail/board-detail.component';
+import { HomeComponent } from './home/home.component';
 
 
 // Must export the config
@@ -27,9 +31,12 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     SidemenuComponent,
-    BoardListComponent
+    BoardListComponent,
+    BoardDetailComponent,
+    HomeComponent
   ],
   imports: [
+    SoundboardRoutingModule,
     BrowserModule,
     FormsModule,
     HttpModule,

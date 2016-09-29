@@ -1,3 +1,13 @@
-<p>
-  board-list works!
-</p>
+<ul
+	class="BoardList"
+>
+	<li
+		class="BoardList_item"
+		*ngFor="let board of boards | async"
+	>
+		<a
+			class="BoardList_link"
+			[routerLink]="['/board']"
+		>{{ board.title }}</a>
+	</li>
+</ul>

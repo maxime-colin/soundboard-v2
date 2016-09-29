@@ -4,7 +4,7 @@ import { BoardService } from '../board.service';
 @Component({
   selector: 'app-board-list',
   templateUrl: './board-list.component.html',
-  styleUrls: ['./board-list.component.css']
+  styleUrls: ['./board-list.component.scss']
 })
 export class BoardListComponent implements OnInit {
   private boards;
@@ -14,8 +14,7 @@ export class BoardListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.boards = this.boardService.get().subscribe(console.log);
-    console.log(this.boards);
+    this.boards = this.boardService.get();
   }
 
 
