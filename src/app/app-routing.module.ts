@@ -4,7 +4,7 @@ import { BoardDetailComponent } from './board-detail/board-detail.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: 'board', component: BoardDetailComponent },
+  { path: 'board/:boardId', component: BoardDetailComponent },
   { path: '**', component: HomeComponent },
 ];
 
