@@ -3,6 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { BoardService } from "../board.service";
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
+
+export class Board {
+  public tiles : any[];
+}
+
 @Component({
   selector: 'app-board-detail',
   templateUrl: './board-detail.component.html',
@@ -24,10 +29,11 @@ export class BoardDetailComponent implements OnInit {
   }
 
   private loadBoard(boardId: string) {
-    this.board = this.boardService.getBoardById(boardId).subscribe(board => {
-      this.tiles = Object.keys(board.tiles).map(key => board.tiles[key]);
-    }) ;
+    this.board = this.boardService.getBoardById(boardId).subscribe(this.boardReceived) ;
   }
 
+  private boardReceived(board:Board) {
+      this.tiles = Object.keys(board.tiles).map(key => board.tiles[key]);
+  }
 
 }
