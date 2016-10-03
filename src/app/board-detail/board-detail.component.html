@@ -1,9 +1,6 @@
-<p>
-  board-detail works!
-</p>
+<app-voronoi
+        [board]="board"
+        *ngIf="board"
+        class="Voronoi-full"
+></app-voronoi>
 
-<ul>
-  <li *ngFor="let tile of (board | async)?.tiles | values">
-    {{tile.title}}
-  </li>
-</ul>

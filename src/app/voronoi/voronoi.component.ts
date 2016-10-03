@@ -1,18 +1,19 @@
-import { Component, OnInit, ElementRef, Renderer } from '@angular/core';
-import { Input, HostListener } from '@angular/core/src/metadata/directives';
-import { VoronoiDiagram } from './voronoi-diagram';
-import { VoronoiRenderer } from './voronoi-renderer';
-import { AudioPlayerFactory } from '../audio/audio-player-factory';
-import { PointerEventFactory } from '../pointer-event/pointer-event-factory';
-import { PointerControl } from './pointer-control';
-import { Point } from '../common/point';
-import { Dimension } from '../common/dimension';
-import { VoronoiBoard } from './voronoi-board';
+import { Component, OnInit, ElementRef, Renderer } from "@angular/core";
+import { Input, HostListener } from "@angular/core/src/metadata/directives";
+import { VoronoiDiagram } from "./voronoi-diagram";
+import { VoronoiRenderer } from "./voronoi-renderer";
+import { AudioPlayerFactory } from "../audio/audio-player-factory";
+import { PointerEventFactory } from "../pointer-event/pointer-event-factory";
+import { PointerControl } from "./pointer-control";
+import { Point } from "../common/point";
+import { Dimension } from "../common/dimension";
+import { VoronoiBoard } from "./voronoi-board";
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-voronoi',
-  templateUrl: './voronoi.component.html',
-  styleUrls: ['./voronoi.component.css']
+  template: '',
+  styleUrls: ['./voronoi.component.scss']
 })
 export class VoronoiComponent implements OnInit {
 
@@ -35,7 +36,8 @@ export class VoronoiComponent implements OnInit {
       private audioPlayerFactory: AudioPlayerFactory,
       private renderer: Renderer,
       private pointerEventFactory: PointerEventFactory
-  ) {}
+  ) {
+  }
 
   /**
    * On init
@@ -44,17 +46,31 @@ export class VoronoiComponent implements OnInit {
   ngOnInit():any {
     this.throttledResize = _.throttle(this.resizeHandler, 16);
   }
-
-  /**
-   * After view init
-   */
-  ngAfterViewInit():any {
+  
+  ngOnChanges(changes: {[propertyName: string]: any}) {
+    if(this.voronoiRenderer) {
+      console.log('stop');
+      this.voronoiRenderer.stop();
+      while (this.elementRef.nativeElement.firstChild) {
+        console.log('REMOVE', this.elementRef.nativeElement.firstChild);
+        this.elementRef.nativeElement.removeChild(this.elementRef.nativeElement.firstChild);
+      }
+    }
+    
     this.createDiagram();
     this.voronoiRenderer = new VoronoiRenderer(
         this.elementRef.nativeElement,
         this.diagram
     );
     this.voronoiRenderer.render();
+  }
+
+
+  /**
+   * After view init
+   */
+  ngAfterViewInit():any {
+
   }
 
   ngOnDestroy():any {

@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
 import { BoardService } from "../board.service";
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-
+import { Board } from "../common/board";
+import { FileDatastore } from "../common/file-datastore";
 
 
 @Component({
   selector: 'app-board-detail',
   templateUrl: './board-detail.component.html',
-  styleUrls: ['./board-detail.component.css']
+  styleUrls: ['./board-detail.component.scss']
 })
 export class BoardDetailComponent implements OnInit {
   private board;
@@ -16,7 +16,8 @@ export class BoardDetailComponent implements OnInit {
 
   constructor(
       private route: ActivatedRoute,
-      private boardService: BoardService
+      private boardService: BoardService,
+      private fileDataStore: FileDatastore
   ) { }
 
   ngOnInit() {
@@ -26,12 +27,26 @@ export class BoardDetailComponent implements OnInit {
   }
 
   private loadBoard(boardId: string) {
-    this.board = this.boardService.getBoardById(boardId);
-  }
+    this.boardService.getBoardById(boardId).subscribe(board => {
+  
+      // Typing
+      board.cells = board.tiles;
 
-  private boardLoaded(board:any) {
-      this.tiles = Object.keys(board.tiles).map(key => board.tiles[key]);
-      console.log(this.tiles);
+      // Load audio
+      // @todo : Gérer le chargement ailleurs
+      _.each(board.cells, (cell) => {
+    
+        cell.audio = cell.audio.replace('store/', 'audio-store/') + '.mp3';
+    
+        this.fileDataStore.get(cell.audio).subscribe((data) => {
+          cell.audioData = data;
+          cell.audioLoaded = true;
+        });
+      });
+  
+      this.board = board;
+      console.log('Board received', board);
+    });
   }
 
 }
