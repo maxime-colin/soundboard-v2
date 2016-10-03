@@ -15,15 +15,16 @@ import { RouterModule } from '@angular/router';
 import { SoundboardRoutingModule } from './app-routing.module';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
 import { HomeComponent } from './home/home.component';
+import { ValuesPipe } from './values.pipe';
 
 
 // Must export the config
 export const firebaseConfig = {
-  apiKey: "AIzaSyAwd-zTltQqyljJDcgcIefkC2DGrICDKJA",
-  authDomain: "mc-pad-test.firebaseapp.com",
-  databaseURL: "https://mc-pad-test.firebaseio.com",
-  storageBucket: "mc-pad-test.appspot.com",
-  messagingSenderId: "969572079029"
+  apiKey: "AIzaSyAMWQaVFi1zEX7Jwxg0ofnApfACurWMEg4",
+  authDomain: "soundboard-v2.firebaseapp.com",
+  databaseURL: "https://soundboard-v2.firebaseio.com",
+  storageBucket: "",
+  messagingSenderId: "1062302939902"
 };
 
 
@@ -33,7 +34,8 @@ export const firebaseConfig = {
     SidemenuComponent,
     BoardListComponent,
     BoardDetailComponent,
-    HomeComponent
+    HomeComponent,
+    ValuesPipe
   ],
   imports: [
     SoundboardRoutingModule,

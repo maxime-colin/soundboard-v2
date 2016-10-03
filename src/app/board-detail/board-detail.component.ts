@@ -29,11 +29,12 @@ export class BoardDetailComponent implements OnInit {
   }
 
   private loadBoard(boardId: string) {
-    this.board = this.boardService.getBoardById(boardId).subscribe(this.boardReceived) ;
+    this.board = this.boardService.getBoardById(boardId);
   }
 
-  private boardReceived(board:Board) {
+  private boardLoaded(board:Board) {
       this.tiles = Object.keys(board.tiles).map(key => board.tiles[key]);
+      console.log(this.tiles);
   }
 
 }

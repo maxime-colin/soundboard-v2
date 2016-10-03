@@ -1,8 +1,9 @@
 <p>
   board-detail works!
 </p>
+
 <ul>
-  <li *ngFor="let tile of tiles">
+  <li *ngFor="let tile of (board | async)?.tiles | values">
     {{tile.title}}
   </li>
 </ul>
