@@ -18,6 +18,9 @@
         "styles.css"
       ],
       "scripts": [
+        "../node_modules/maxime-colin-libs/paper-full.js",
+        "../node_modules/maxime-colin-libs/quad-tree.js",
+        "../node_modules/maxime-colin-libs/rhill-voronoi-core.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
