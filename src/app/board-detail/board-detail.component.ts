@@ -4,9 +4,6 @@ import { BoardService } from "../board.service";
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 
-export class Board {
-  public tiles : any[];
-}
 
 @Component({
   selector: 'app-board-detail',
@@ -32,7 +29,7 @@ export class BoardDetailComponent implements OnInit {
     this.board = this.boardService.getBoardById(boardId);
   }
 
-  private boardLoaded(board:Board) {
+  private boardLoaded(board:any) {
       this.tiles = Object.keys(board.tiles).map(key => board.tiles[key]);
       console.log(this.tiles);
   }

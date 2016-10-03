@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
-import { Observable } from "rxjs/Observable";
-import { Board } from "./board-detail/board-detail.component";
+import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
 @Injectable()
 export class BoardService {
@@ -15,7 +13,7 @@ export class BoardService {
   }
   
   
-  public getBoardById(boardId: string): FirebaseObjectObservable<Board>{
+  public getBoardById(boardId: string): FirebaseObjectObservable<any>{
     console.log('/boards/' + boardId);
     return this.af.database.object('/boards/' + boardId);
     

@@ -5,3 +5,6 @@
 declare var System: any;
 declare var require: NodeRequire;
 declare var module: NodeModule;
+declare var webkitAudioContext: any;
+declare var Voronoi:any;
+declare var paper: any;

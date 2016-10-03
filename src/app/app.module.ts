@@ -16,6 +16,7 @@ import { SoundboardRoutingModule } from './app-routing.module';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
 import { HomeComponent } from './home/home.component';
 import { ValuesPipe } from './values.pipe';
+import { VoronoiComponent } from './voronoi/voronoi.component';
 
 
 // Must export the config
@@ -35,7 +36,8 @@ export const firebaseConfig = {
     BoardListComponent,
     BoardDetailComponent,
     HomeComponent,
-    ValuesPipe
+    ValuesPipe,
+    VoronoiComponent
   ],
   imports: [
     SoundboardRoutingModule,
