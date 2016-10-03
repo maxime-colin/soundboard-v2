@@ -49,10 +49,8 @@ export class VoronoiComponent implements OnInit {
   
   ngOnChanges(changes: {[propertyName: string]: any}) {
     if(this.voronoiRenderer) {
-      console.log('stop');
       this.voronoiRenderer.stop();
       while (this.elementRef.nativeElement.firstChild) {
-        console.log('REMOVE', this.elementRef.nativeElement.firstChild);
         this.elementRef.nativeElement.removeChild(this.elementRef.nativeElement.firstChild);
       }
     }
