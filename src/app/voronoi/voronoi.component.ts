@@ -45,6 +45,7 @@ export class VoronoiComponent implements OnInit {
    */
   ngOnInit():any {
     this.throttledResize = _.throttle(this.resizeHandler, 16);
+    this.resizeHandler = () => this.throttledResize();
   }
   
   ngOnChanges(changes: {[propertyName: string]: any}) {
@@ -68,11 +69,13 @@ export class VoronoiComponent implements OnInit {
    * After view init
    */
   ngAfterViewInit():any {
+    window.addEventListener('resize', this.resizeHandler);
 
   }
 
   ngOnDestroy():any {
     this.voronoiRenderer.stop();
+    window.removeEventListener('resize', this.resizeHandler);
   }
 
 
@@ -112,16 +115,6 @@ export class VoronoiComponent implements OnInit {
         this.renderer
     );
     pointerControl.onTouch(pointerEvent);
-  }
-
-
-
-  /**
-   * On resize
-   * @param event
-   */
-  onResize(event) {
-    this.throttledResize();
   }
 
   /**
