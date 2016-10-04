@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import { SidemenuComponent } from "./sidemenu/sidemenu.component";
 import { BoardListComponent } from "./board-list/board-list.component";
 import { AngularFireModule } from "angularfire2";
-import { BoardService } from "./board.service";
 import { SoundboardRoutingModule } from "./app-routing.module";
 import { BoardDetailComponent } from "./board-detail/board-detail.component";
 import { HomeComponent } from "./home/home.component";
@@ -20,6 +19,8 @@ import * as _ from "lodash";
 // Don't remove !
 import * as firebase from 'firebase';
 import { FileDatastore } from "./common/file-datastore";
+import { BoardService } from './services/board.service';
+import { HeaderComponent } from './header/header.component';
 
 
 // Must export the config
@@ -40,7 +41,8 @@ export const firebaseConfig = {
     BoardDetailComponent,
     HomeComponent,
     ValuesPipe,
-    VoronoiComponent
+    VoronoiComponent,
+    HeaderComponent
   ],
   imports: [
     SoundboardRoutingModule,

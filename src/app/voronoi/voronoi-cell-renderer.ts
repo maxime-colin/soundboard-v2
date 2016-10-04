@@ -10,6 +10,9 @@ export class VoronoiCellRenderer {
 		private paper
 	) {
 		this.path = new this.paper.Path();
+		this.path.fillColor = '#F2EEE8';
+/*		this.path.strokeColor = '#F2EEE8';
+		this.path.strokeWidth = 1;*/
 
 		this.label = new this.paper.PointText(new this.paper.Point(10,10));
 		this.label.justification = 'center';
@@ -68,7 +71,7 @@ export class VoronoiCellRenderer {
 		}
 
 		if(this.cell.highlight <= 0) {
-			this.path.fillColor = new this.paper.Color('#FFFFFF');
+			this.path.fillColor = new this.paper.Color('#F2EEE8');
 		}
 
 		if(this.cell.highlight > 0) {

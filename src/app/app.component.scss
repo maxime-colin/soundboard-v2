@@ -1,6 +1,15 @@
 :host {
 	display: flex;
+	flex-direction: column;
 	height:100vh;
+}
+
+.App_header {
+	display: flex;
+	align-items: center;
+	height: 60px;
+
+	background-color: #F7DA22;
 }
 
 .App_content {

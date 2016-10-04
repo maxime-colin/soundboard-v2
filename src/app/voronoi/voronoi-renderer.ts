@@ -70,7 +70,7 @@ export class VoronoiRenderer {
 			this.background.remove();
 		}
 		this.background = new this.paper.Shape.Rectangle({x:0,y:0}, this.paper.view.viewSize);
-		this.background.fillColor = '#F7DA22';
+		this.background.fillColor = '#FFFFFF';
 		this.background.sendToBack();
 	}
 }
