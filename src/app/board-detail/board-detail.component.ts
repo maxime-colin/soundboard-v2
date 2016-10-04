@@ -37,7 +37,8 @@ export class BoardDetailComponent implements OnInit {
       _.each(board.cells, (cell) => {
     
         cell.audio = cell.audio.replace('store/', 'audio-store/') + '.mp3';
-    
+        cell.audio = cell.audio.replace('http://', 'https://');
+
         this.fileDataStore.get(cell.audio).subscribe((data) => {
           cell.audioData = data;
           cell.audioLoaded = true;
