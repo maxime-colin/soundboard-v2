@@ -40,11 +40,17 @@ export class PointerControl {
 		let vector = this.pointerEvent.vectorTo(event);
 
 		// Playback rate
-		var playbackRate = (Math.max(vector.x, -200) / 200) + 1;
-		playbackRate = Math.max(0.2, playbackRate);
-		this.audioPlayer.setPlaybackRate(playbackRate);
-		
-		
+		// var playbackRate = (Math.max(vector.x, -200) / 200) + 1;
+		// playbackRate = Math.max(0.2, playbackRate);
+		// this.audioPlayer.setPlaybackRate(playbackRate);
+
+		var playbackRate = (Math.max(vector.x, -100) / 50) + 1;
+		console.log(playbackRate);
+		if(playbackRate < 0) {
+			this.audioPlayer.reverse();
+		}
+		this.audioPlayer.setPlaybackRate(Math.abs(playbackRate));
+
 		// Detune
 		var detune = (vector.y / 200) * 1200;
 		detune = Math.max(-1200, detune);
