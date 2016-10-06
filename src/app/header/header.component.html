@@ -1,3 +1,10 @@
 <a [routerLink]="['/']">
-  <i class="material-icons Header_back">chevron_left</i>
+	<i class="material-icons Header_back">chevron_left</i>
+</a>
+
+<a
+	*ngFor="let item of toolbarItems"
+	[routerLink]="item.link"
+>
+	{{item.title}}
 </a>

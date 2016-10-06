@@ -1,9 +1,8 @@
-import { Component } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { Http } from "@angular/http";
 
-@Component({
-})
+@Injectable()
 export class FileDatastore {
 
     constructor(

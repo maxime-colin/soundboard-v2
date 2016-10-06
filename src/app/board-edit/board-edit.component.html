@@ -1,0 +1,10 @@
+<app-voronoi
+        [board]="board"
+        *ngIf="board"
+        class="Voronoi-full"
+></app-voronoi>
+<div class="BoardEdit_edit">
+  <p>
+    <button (click)="addTile()">Add</button>
+  </p>
+</div>

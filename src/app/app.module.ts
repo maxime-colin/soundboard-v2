@@ -21,6 +21,8 @@ import * as firebase from 'firebase';
 import { FileDatastore } from "./common/file-datastore";
 import { BoardService } from './services/board.service';
 import { HeaderComponent } from './header/header.component';
+import { BoardEditComponent } from './board-edit/board-edit.component';
+import { ToolbarService } from './header/toolbar.service';
 
 
 // Must export the config
@@ -42,7 +44,8 @@ export const firebaseConfig = {
     HomeComponent,
     ValuesPipe,
     VoronoiComponent,
-    HeaderComponent
+    HeaderComponent,
+    BoardEditComponent
   ],
   imports: [
     SoundboardRoutingModule,
@@ -56,7 +59,8 @@ export const firebaseConfig = {
       AudioPlayerFactory,
       AudioService,
       PointerEventFactory,
-      FileDatastore
+      FileDatastore,
+      ToolbarService
   ],
   bootstrap: [AppComponent]
 })
