@@ -21,20 +21,19 @@ export class AudioPlayer {
 
 		this.audioPlayer.playObservable.subscribe(buffer => {
 			this.buffer = buffer;
+			console.log('INITIAL BUFFER', buffer);
 		});
+		console.log(this.audioPlayer);
 	}
 
 	public reverse() {
-		if(this.playDirection == -1) {
-			return;
-		}
-		this.playDirection = -1;
-
+		this.playDirection *= -1;
 		try {
 			Array.prototype.reverse.call( this.buffer.getChannelData(0) );
 			Array.prototype.reverse.call( this.buffer.getChannelData(1) );
+			console.log('REVERSE BUFFER', this.buffer);
+			console.log(this.audioPlayer.source);
 		} catch (e) {
-
 		}
 	}
 
@@ -49,6 +48,15 @@ export class AudioPlayer {
 		if( ! this.audioPlayer) {
 			return false;
 		}
+
+		if(
+			(this.playDirection == 1 && playbackRate < 0) ||
+			(this.playDirection == -1 && playbackRate > 0)
+		) {
+			this.reverse();
+		}
+
+		playbackRate = Math.abs(playbackRate);
 		this.audioPlayer.source.playbackRate.value = playbackRate;
 	}
 	
