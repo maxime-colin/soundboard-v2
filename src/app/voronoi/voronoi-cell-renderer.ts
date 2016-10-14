@@ -4,19 +4,27 @@ export class VoronoiCellRenderer {
 
 	private path;
 	private label;
+	private colorDark = '#28292b';
+	private colorLight = '#77eedf';
 
+
+	/**
+	 * Constructor
+	 * @param cell
+	 * @param paper
+	 */
 	constructor(
 		private cell: VoronoiCell,
 		private paper
 	) {
 		this.path = new this.paper.Path();
-		this.path.fillColor = '#F2EEE8';
+		this.path.fillColor = this.colorLight;
 /*		this.path.strokeColor = '#F2EEE8';
 		this.path.strokeWidth = 1;*/
 
 		this.label = new this.paper.PointText(new this.paper.Point(10,10));
 		this.label.justification = 'center';
-		this.label.fillColor = '#575757';
+		this.label.fillColor = this.colorDark;
 
 		let title = cell.getCell().title;
 		title = this.splitHalf(title).join("\r\n");
@@ -30,6 +38,12 @@ export class VoronoiCellRenderer {
 		this.updatePath();
 	}
 
+
+	/**
+	 * Split half
+	 * @param text
+	 * @returns {T[]|string[]|any}
+	 */
 	private splitHalf(text:string):string[] {
 
 		let splitted;
@@ -59,19 +73,34 @@ export class VoronoiCellRenderer {
 		return splitted;
 	}
 
+
+	/**
+	 * Update path
+	 */
 	public updatePath() {
 		const center = new this.paper.Point(this.cell.getPosition());
-
 		this.label.position = center;
-
 		this.path.removeSegments();
+
+
+		if(this.cell.clicked) {
+			// console.log(JSON.parse(JSON.stringify(this.cell)));
+			//
+			// let startPoint = new this.paper.Point(this.cell.pointerStartPosition.x, this.cell.pointerStartPosition.y);
+			// let vectorPoint = new this.paper.Point(this.cell.pointerVector.x * -1, this.cell.pointerVector.y);
+			// let endPoint = startPoint.subtract(vectorPoint);
+			// let vectorLine = new this.paper.Path.Line(startPoint, endPoint);
+			// vectorLine.strokeColor = '#000000';
+			// vectorLine.strokeWidth = 5;
+			// vectorLine.bringToFront();
+		}
 
 		if(this.cell.highlight == 1) {
 			this.path.fillColor = new this.paper.Color('#00B2B2');
 		}
 
 		if(this.cell.highlight <= 0) {
-			this.path.fillColor = new this.paper.Color('#F2EEE8');
+			this.path.fillColor = new this.paper.Color(this.colorLight);
 		}
 
 		if(this.cell.highlight > 0) {
@@ -156,6 +185,10 @@ export class VoronoiCellRenderer {
 		this.label.fontSize = (Math.min(this.path.bounds.width * 1.30 / maxLineSize, 26));
 	}
 
+	/**
+	 * Remove small bits
+	 * @param path
+	 */
 	public removeSmallBits(path) {
 		var averageLength = path.length / path.segments.length;
 		var min = path.length / 35;

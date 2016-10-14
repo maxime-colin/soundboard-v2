@@ -21,6 +21,7 @@ export class PointerControl {
 		this.pointerEvent = pointerEvent;
 		this.cell.clicked = true;
 		this.cell.highlight = 1.0;
+		this.cell.pointerStartPosition = this.pointerEvent.position;
 
 		this.eventCanceller = [
 			this.renderer.listenGlobal('window', 'mousemove', (event) => this.onDragHandler(event)),
@@ -38,6 +39,7 @@ export class PointerControl {
 	private onDragHandler(event):any {
 
 		let vector = this.pointerEvent.vectorTo(event);
+		this.cell.pointerVector = vector;
 
 		// Playback rate
 		// var playbackRate = (Math.max(vector.x, -200) / 200) + 1;
@@ -55,6 +57,9 @@ export class PointerControl {
 	}
 
 	private onMouseUpHandler(event):any {
+		this.cell.pointerStartPosition = null;
+		this.cell.pointerVector = null;
+		this.cell.clicked = false;
 		for(let eventCancel of this.eventCanceller) {
 			eventCancel();
 		}

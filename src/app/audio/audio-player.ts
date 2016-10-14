@@ -31,8 +31,6 @@ export class AudioPlayer {
 		try {
 			Array.prototype.reverse.call( this.buffer.getChannelData(0) );
 			Array.prototype.reverse.call( this.buffer.getChannelData(1) );
-			console.log('REVERSE BUFFER', this.buffer);
-			console.log(this.audioPlayer.source);
 		} catch (e) {
 		}
 	}

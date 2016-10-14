@@ -7,6 +7,8 @@ export class VoronoiCell {
 	public voronoiId;
 	public color;
 	public highlight:number = 0;
+	public pointerStartPosition;
+	public pointerVector;
 
 	constructor(
 		private cell:any,
