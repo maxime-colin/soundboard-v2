@@ -1,5 +1,6 @@
-
 import { VoronoiCell } from './voronoi-cell';
+import * as _ from "lodash";
+
 export class VoronoiCellRenderer {
 
 	private path;

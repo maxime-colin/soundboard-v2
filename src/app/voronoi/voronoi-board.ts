@@ -1,6 +1,7 @@
 import {VoronoiDiagram} from "./voronoi-diagram";
 import {VoronoiCell} from "./voronoi-cell";
 import {Point} from "../common/point";
+import * as _ from "lodash";
 
 
 export class VoronoiBoard {

@@ -14,7 +14,7 @@ import { VoronoiComponent } from "./voronoi/voronoi.component";
 import { AudioPlayerFactory } from "./audio/audio-player-factory";
 import { AudioService } from "./audio/audio-service";
 import { PointerEventFactory } from "./pointer-event/pointer-event-factory";
-import * as _ from "lodash";
+import 'rxjs/Rx';
 
 // Don't remove !
 import * as firebase from 'firebase';
